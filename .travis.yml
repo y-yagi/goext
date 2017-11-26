@@ -4,6 +4,9 @@ go:
   - 1.8
   - 1.9
 
+install:
+  - go get -u github.com/golang/lint/golint
+
 before_script:
   - go vet ./...
   - golint -set_exit_status ./...
