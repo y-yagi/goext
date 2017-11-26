@@ -1,5 +1,6 @@
 package arr
 
+// Contains checks the value exists in Array.
 func Contains(s []string, e string) bool {
 	for _, v := range s {
 		if e == v {
