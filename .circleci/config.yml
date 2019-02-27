@@ -15,7 +15,7 @@ test: &test
     - run:
         name: Run lint
         command: |
-          GO111MODULE=off go get -u github.com/golang/lint/golint
+          GO111MODULE=off go get -u golang.org/x/lint/golint
           GO111MODULE=off golint -set_exit_status $(go list ./... | grep -v /vendor/)
     - run:
         name: Run staticcheck
