@@ -22,3 +22,18 @@ func Join(s []string, sep string) string {
 	buf += s[len(s)-1]
 	return buf
 }
+
+// UniqueStrings removes duplicate element.
+func UniqueStrings(s []string) []string {
+	keys := make(map[string]bool, len(s))
+	list := []string{}
+
+	for _, entry := range s {
+		if _, value := keys[entry]; !value {
+			keys[entry] = true
+			list = append(list, entry)
+		}
+	}
+
+	return list
+}
