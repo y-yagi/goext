@@ -1,6 +1,10 @@
 package arr
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/google/go-cmp/cmp"
+)
 
 func TestContains(t *testing.T) {
 	value := "today"
@@ -23,5 +27,16 @@ func TestJoin(t *testing.T) {
 	result := Join(list, "-")
 	if result != expected {
 		t.Errorf("expected %v, but %v.", expected, result)
+	}
+}
+
+func TestUniqueStrings(t *testing.T) {
+	list := []string{"abc", "bcd", "cde", "abc", "def"}
+	expected := []string{"abc", "bcd", "cde", "def"}
+
+	result := UniqueStrings(list)
+
+	if diff := cmp.Diff(expected, result); diff != "" {
+		t.Errorf("UniqueStrings() mismatch (-want +got):\n%s", diff)
 	}
 }
