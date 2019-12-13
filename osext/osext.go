@@ -1,6 +1,8 @@
 package osext
 
-import "os"
+import (
+	"os"
+)
 
 // IsExist checks the file exists.
 func IsExist(filename string) bool {
