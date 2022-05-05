@@ -41,3 +41,20 @@ func TestUniqueStrings(t *testing.T) {
 		t.Errorf("UniqueStrings() mismatch (-want +got):\n%s", diff)
 	}
 }
+
+func BenchmarkContains_found(b *testing.B) {
+	value := "today"
+	list := []string{"today", "week", "month", "all"}
+	for n := 0; n < b.N; n++ {
+		arr.Contains(list, value)
+	}
+}
+
+func BenchmarkContains_notfound(b *testing.B) {
+	value := "unuexist"
+	list := []string{"today", "week", "month", "all"}
+
+	for n := 0; n < b.N; n++ {
+		arr.Contains(list, value)
+	}
+}
