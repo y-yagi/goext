@@ -1,7 +1,6 @@
 package osext_test
 
 import (
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"testing"
@@ -24,7 +23,7 @@ func TestIsExit(t *testing.T) {
 }
 
 func TestIsEmptyDir(t *testing.T) {
-	tempDir, err := ioutil.TempDir("", "osexttest")
+	tempDir, err := os.MkdirTemp("", "osexttest")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -38,7 +37,7 @@ func TestIsEmptyDir(t *testing.T) {
 		t.Errorf("Expect IsEmptyDir returns true but false. dir: %s", tempDir)
 	}
 
-	if err = ioutil.WriteFile(tempDir+"/hello", []byte("message"), 0644); err != nil {
+	if err = os.WriteFile(tempDir+"/hello", []byte("message"), 0644); err != nil {
 		t.Fatal(err)
 	}
 	if result, err = osext.IsEmptyDir(tempDir); err != nil {

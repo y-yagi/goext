@@ -1,7 +1,6 @@
 package ioext_test
 
 import (
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"testing"
@@ -10,7 +9,7 @@ import (
 )
 
 func TestCopyFile(t *testing.T) {
-	tempDir, err := ioutil.TempDir("", "ioexttest")
+	tempDir, err := os.MkdirTemp("", "ioexttest")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -18,7 +17,7 @@ func TestCopyFile(t *testing.T) {
 
 	tmpfn1 := filepath.Join(tempDir, "tmpfile1")
 	content := []byte("temporary file's content")
-	if err := ioutil.WriteFile(tmpfn1, content, 0644); err != nil {
+	if err := os.WriteFile(tmpfn1, content, 0644); err != nil {
 		t.Fatal(err)
 	}
 
@@ -27,7 +26,7 @@ func TestCopyFile(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	got, err := ioutil.ReadFile(tmpfn2)
+	got, err := os.ReadFile(tmpfn2)
 	if err != nil {
 		t.Fatal(err)
 	}
